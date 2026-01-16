@@ -1,5 +1,5 @@
-const readFile = async (file) => {
-  const data = await Deno.readTextFile(file);
+export const readFile = async (file, fnToRead = Deno.readTextFile) => {
+  const data = await fnToRead(file);
   return data.split("\n");
 };
 
@@ -18,7 +18,7 @@ export const selectRandomFromFile = async (start, end, file, n) => {
 
 export const selectWords = async () => {
   const words = [];
-  const fileNames = ["small_words.txt", "large_words.txt"];
+  const fileNames = ["small_words.txt"];
   for (const file of fileNames) {
     const result = await selectRandomFromFile(0, 84, file, 3);
     words.push(...result);
