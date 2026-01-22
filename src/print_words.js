@@ -7,8 +7,8 @@ const generateRandomChar = () =>
 export const createPuzzle = (words, positions) => {
   const puzzle = Array.from({ length: 10 }).map(generateRandomChar);
 
-  for (let i =0; i < words.length; i++) {
-    for (let j =0 ; j< words[i].length; j++ ) {
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; j < words[i].length; j++) {
       const col = positions[i][j] % 10;
       const row = Math.floor(positions[i][j] / 10);
       puzzle[row][col] = words[i][j];
@@ -19,6 +19,7 @@ export const createPuzzle = (words, positions) => {
 };
 
 export const printPuzzle = (puzzle) => {
-  const str = puzzle.map(arr => arr.join('\t')).join('\n\n\n');
+  const str = puzzle.map((arr) => arr.join("\t")).join("\n\n\n");
+  console.clear();
   console.log(str);
-}
+};

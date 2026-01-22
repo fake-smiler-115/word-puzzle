@@ -55,9 +55,9 @@ Deno.test("pattern exceeds the boundary greater than 100", () => {
 });
 
 Deno.test("generate positions for size 5", () => {
-  assertEquals(generatePositions(5,() => 0.5), [50,60,70,80,90]);
+  assertEquals(generatePositions(5,[],() => 0.5), [50,60,70,80,90]);
 });
 
 Deno.test("generate positions for size 2", () => {
-  assertEquals(generatePositions(2,() => 0.5), [50,60]);
+  assertEquals(generatePositions(2,[],() => 0.5), [50,60]);
 });
