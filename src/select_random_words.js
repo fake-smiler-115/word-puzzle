@@ -18,7 +18,7 @@ export const selectRandomFromFile = async (start, end, file, n) => {
 
 export const selectWords = async () => {
   const words = [];
-  const fileNames = ["small_words.txt"];
+  const fileNames = ['large_words.txt',"small_words.txt"];
   for (const file of fileNames) {
     const result = await selectRandomFromFile(0, 84, file, 3);
     words.push(...result);

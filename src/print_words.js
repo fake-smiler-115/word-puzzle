@@ -1,20 +1,24 @@
-export const print_words = async (words, positions) => {
-  const writer = Deno.stdout.writable.getWriter();
-  const encoder = new TextEncoder();
-  await writer.write(encoder.encode("\x1b[2J"));
-  console.log(words,positions);
-  
-  for (let i = 0; i < words.length; i++) {
-    for (let j = 0; j < words[i].length; j++) {
-      const position = positions[i][j];
-      const row = Math.floor(position / 10) + 1;
-      const col = (position % 10) + 1;
-      await writer.write(
-        encoder.encode(`\x1b[${row + 10};${col + 50}H${words[i][j]}`)
-      );
+const generateRandomChar = () =>
+  Array.from(
+    { length: 10 },
+    () => String.fromCharCode(97 + Math.floor(Math.random() * 26)),
+  );
+
+export const createPuzzle = (words, positions) => {
+  const puzzle = Array.from({ length: 10 }).map(generateRandomChar);
+
+  for (let i =0; i < words.length; i++) {
+    for (let j =0 ; j< words[i].length; j++ ) {
+      const col = positions[i][j] % 10;
+      const row = Math.floor(positions[i][j] / 10);
+      puzzle[row][col] = words[i][j];
     }
   }
 
-  await writer.write(encoder.encode("\x1b[0m"));
-  writer.releaseLock();
+  return puzzle;
 };
+
+export const printPuzzle = (puzzle) => {
+  const str = puzzle.map(arr => arr.join('\t')).join('\n\n\n');
+  console.log(str);
+}
