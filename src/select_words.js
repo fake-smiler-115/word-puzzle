@@ -39,21 +39,24 @@ const colorPositionsInPuzzle = (position, puzzle) => {
   }
 };
 
-const checkPoints = (col, row, positions, puzzle) => {
+const checkPoints = (col, row, positions, puzzle, count) => {
   const { point1, point2 } = convertToPoints(col, row);
 
   for (const position of positions) {
     if (position[0] === point1 && position.slice(-1)[0] === point2) {
+      count[0]++;
       return colorPositionsInPuzzle(position, puzzle);
     }
   }
 };
 
 export const validateInput = async (puzzle, positions) => {
-  while (true) {
+  const count = [0];
+  while (count[0] < positions.length) {
     printPuzzle(puzzle);
     console.log(positions);
     const { col, row } = await takeCoordinates();
-    checkPoints(col, row, positions, puzzle);
+    checkPoints(col, row, positions, puzzle, count);
   }
+    printPuzzle(puzzle);
 };

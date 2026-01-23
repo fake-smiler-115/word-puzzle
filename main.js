@@ -8,7 +8,8 @@ const main = async () => {
   const positions = generatePositionsForWOrds(words);
   console.log(words, positions);
   const puzzle = createPuzzle(words, positions);
-  validateInput(puzzle, positions);
+  await validateInput(puzzle, positions);
+  console.log('Hurry won! 🏆');
 };
 
 main();
