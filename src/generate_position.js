@@ -35,10 +35,11 @@ export const generatePositions = (size,previousPositions, fn = Math.random) => {
 
 export const generatePositionsForWOrds = (words) => {
   const allPositions = [];
+  const previousPositions = [];
   for (const word of words) {
-    const previousPositions = allPositions.flatMap((x) => x);
     const positions = generatePositions(word.length , previousPositions);
     allPositions.push(positions);
+    previousPositions.push(...positions);
   }
 
   return allPositions;

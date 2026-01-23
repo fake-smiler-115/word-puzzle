@@ -47,8 +47,6 @@ const checkPoints = (col, row, positions, puzzle) => {
       return colorPositionsInPuzzle(position, puzzle);
     }
   }
-
-  return "it is not";
 };
 
 export const validateInput = async (puzzle, positions) => {
