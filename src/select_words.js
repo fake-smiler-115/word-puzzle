@@ -50,7 +50,16 @@ const checkPoints = (col, row, positions, puzzle, count) => {
   }
 };
 
-export const validateInput = async (puzzle, positions) => {
+export const randomCharacters = () => {
+  const characters = Array.from(
+    { length: 100 },
+    () => String.fromCharCode(97 + Math.floor(Math.random() * 26)),
+  );
+  const positions = Array.from({ length: 100 }, (_, i) => i);
+  return [[characters], [positions]];
+};
+
+export const validateInputInArr = async (puzzle, positions) => {
   const count = [0];
   while (count[0] < positions.length) {
     printPuzzle(puzzle);
@@ -58,5 +67,5 @@ export const validateInput = async (puzzle, positions) => {
     const { col, row } = await takeCoordinates();
     checkPoints(col, row, positions, puzzle, count);
   }
-    printPuzzle(puzzle);
+  printPuzzle(puzzle);
 };

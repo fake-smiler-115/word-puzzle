@@ -4,7 +4,7 @@ export const getRandomPoint = (min, max, fn = Math.random) =>
   Math.round(fn() * (max - min) + min);
 
 export const getRandomPattern = (fn = Math.random) => {
-  const patterns = [1, -1, 10, -10];
+  const patterns = [-1, 1, 10, -10];
   return patterns[getRandomPoint(0, 3, fn)];
 };
 
